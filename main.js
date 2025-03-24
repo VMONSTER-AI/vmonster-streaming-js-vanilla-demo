@@ -26,22 +26,24 @@ async function fetchStreamConfig(
 ) {
   try {
     const formData = new FormData();
-    formData.append("agentId", agentId);
+    formData.append("agent_id", agentId);
     formData.append("language", language);
     if (background) {
-      formData.append("background", background);
+      const backgroundName =
+        background.type === "image/png" ? "background.png" : "background.jpg";
+      formData.append("background", background, backgroundName);
     }
     if (positionX) {
-      formData.append("positionX", positionX);
+      formData.append("position_x", positionX);
     }
     if (positionY) {
-      formData.append("positionY", positionY);
+      formData.append("position_y", positionY);
     }
     if (scale) {
       formData.append("scale", scale);
     }
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/streams`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/streams`, {
       method: "POST",
       headers: {
         "x-api-key": apiKey,
@@ -145,11 +147,7 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
     );
 
     setupEventListeners();
-    await room.join({
-      stream_id: config.stream_id,
-      session_id: config.session_id,
-      token: config.token,
-    });
+    await room.join(config.session_id, config.stream_id, config.token);
 
     document.getElementById("backgroundInput").value = null;
     document.getElementById("positionXInput").value = null;
