@@ -91,9 +91,6 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
 
   try {
     const response = await fetchStreams(
-      import.meta.env.VITE_SERVER_URL,
-      import.meta.env.VITE_API_KEY,
-      import.meta.env.VITE_AIAVATAR_ID,
       languageInput,
       background || null,
       positionXInput || null,

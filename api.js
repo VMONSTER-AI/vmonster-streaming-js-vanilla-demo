@@ -1,7 +1,8 @@
+const apiUrl = import.meta.env.VITE_SERVER_URL;
+const apiKey = import.meta.env.VITE_API_KEY;
+const aiAvatarId = import.meta.env.VITE_AIAVATAR_ID;
+
 export async function fetchStreams(
-  apiUrl,
-  apiKey,
-  agentId,
   language,
   background,
   positionX,
@@ -10,7 +11,7 @@ export async function fetchStreams(
 ) {
   try {
     const formData = new FormData();
-    formData.append("agent_id", agentId);
+    formData.append("ai_avatar_id", aiAvatarId);
     formData.append("language", language);
     if (background) {
       const backgroundName =
