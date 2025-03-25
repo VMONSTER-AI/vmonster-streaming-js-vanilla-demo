@@ -1,4 +1,5 @@
 import vmonsterRoom from "vmonster-streaming-js";
+import { fetchStreams } from "./api.js";
 
 let room = null;
 let sttResult = "";
@@ -13,53 +14,6 @@ const videoStyle = {
 
 function logClient(text) {
   console.log(`[Client] - ${text}`);
-}
-
-async function fetchStreamConfig(
-  apiKey,
-  agentId,
-  language,
-  background,
-  positionX,
-  positionY,
-  scale
-) {
-  try {
-    const formData = new FormData();
-    formData.append("agent_id", agentId);
-    formData.append("language", language);
-    if (background) {
-      const backgroundName =
-        background.type === "image/png" ? "background.png" : "background.jpg";
-      formData.append("background", background, backgroundName);
-    }
-    if (positionX) {
-      formData.append("position_x", positionX);
-    }
-    if (positionY) {
-      formData.append("position_y", positionY);
-    }
-    if (scale) {
-      formData.append("scale", scale);
-    }
-
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/streams`, {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-      },
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch stream configuration");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching stream configuration:", error);
-    throw error;
-  }
 }
 
 function updateJoinStatus(isJoined) {
@@ -136,7 +90,8 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
   });
 
   try {
-    const config = await fetchStreamConfig(
+    const response = await fetchStreams(
+      import.meta.env.VITE_SERVER_URL,
       import.meta.env.VITE_API_KEY,
       import.meta.env.VITE_AIAVATAR_ID,
       languageInput,
@@ -148,9 +103,9 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
 
     setupEventListeners();
     await room.join({
-      sessionId: config.session_id,
-      streamId: config.stream_id,
-      token: config.token,
+      sessionId: response.session_id,
+      streamId: response.stream_id,
+      token: response.token,
     });
 
     document.getElementById("backgroundInput").value = null;
