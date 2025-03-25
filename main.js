@@ -147,7 +147,11 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
     );
 
     setupEventListeners();
-    await room.join(config.session_id, config.stream_id, config.token);
+    await room.join({
+      sessionId: config.session_id,
+      streamId: config.stream_id,
+      token: config.token,
+    });
 
     document.getElementById("backgroundInput").value = null;
     document.getElementById("positionXInput").value = null;
