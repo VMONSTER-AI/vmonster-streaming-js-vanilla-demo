@@ -11,7 +11,7 @@ export async function fetchStreams(
 ) {
   try {
     const formData = new FormData();
-    formData.append("ai_avatar_id", aiAvatarId);
+    formData.append("aiavatar_id", aiAvatarId);
     formData.append("language", language);
     if (background) {
       const backgroundName =
