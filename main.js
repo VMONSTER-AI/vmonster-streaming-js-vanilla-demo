@@ -71,12 +71,10 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
   const positionXInput = document.getElementById("positionXInput").value;
   const positionYInput = document.getElementById("positionYInput").value;
   const scaleInput = document.getElementById("scaleInput").value;
-
   let background = null;
   if (backgroundInput.files.length > 0) {
     const file = backgroundInput.files[0];
     const useAsBlob = confirm("Treat as Blob? Cancel for File.");
-
     if (useAsBlob) {
       const newBlob = new Blob([file], { type: file.type });
       background = newBlob;
@@ -84,11 +82,9 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
       background = file;
     }
   }
-
   room = new vmonsterRoom({
     serverUrl: import.meta.env.VITE_SERVER_URL,
   });
-
   try {
     const response = await fetchStreams(
       languageInput,
@@ -97,14 +93,12 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
       positionYInput || null,
       scaleInput || null
     );
-
     setupEventListeners();
     await room.join({
       sessionId: response.session_id,
       streamId: response.stream_id,
       token: response.token,
     });
-
     document.getElementById("backgroundInput").value = null;
     document.getElementById("positionXInput").value = null;
     document.getElementById("positionYInput").value = null;
@@ -115,19 +109,16 @@ document.getElementById("joinBtn").addEventListener("click", async () => {
     console.error(error);
   }
 });
-
 document.getElementById("speakBtn").addEventListener("click", async () => {
   const text = document.getElementById("textInput").value;
   const backgroundInput = document.getElementById("backgroundInput");
   const positionXInput = document.getElementById("positionXInput").value;
   const positionYInput = document.getElementById("positionYInput").value;
   const scaleInput = document.getElementById("scaleInput").value;
-
   let background = null;
   if (backgroundInput.files.length > 0) {
     const file = backgroundInput.files[0];
     const useAsBlob = confirm("Treat as Blob? Cancel for File.");
-
     if (useAsBlob) {
       const newBlob = new Blob([file], { type: file.type });
       background = newBlob;
@@ -135,7 +126,6 @@ document.getElementById("speakBtn").addEventListener("click", async () => {
       background = file;
     }
   }
-
   try {
     await room.speak({
       text: text,
