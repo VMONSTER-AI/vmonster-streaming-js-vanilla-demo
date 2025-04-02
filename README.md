@@ -8,8 +8,8 @@ This project is a basic Vanilla Javascript demo using the `vmonster-streaming-js
 ## Features
 
 This demo implements the following features using vmonsterRoom:
-[vmonsterRoom-KOR](https://docs.vmonster.io/undefined/real-time-streaming-sdk/vmonsterRoom)
-[vmonsterRoom-ENG](https://docs.vmonster.io/english/real-time-streaming-sdk/vmonsterRoom)
+[vmonsterRoom-KOR](https://api-docs.vmonster.io/undefined/real-time-streaming-sdk/vmonsterRoom)
+[vmonsterRoom-ENG](https://api-docs.vmonster.io/english/real-time-streaming-sdk/vmonsterRoom)
 
 - Join/Leave Vmonster Streaming stream
 - Request agent to speak text
