@@ -46,7 +46,7 @@ yarn install
 ```bash
 VITE_API_KEY=YOUR_API_KEY  // Your vmonster API Key
 VITE_AIAVATAR_ID=AI AVATAR ID  // vmonster AI Avatar ID
-VITE_SERVER_URL=SERVER_URL  // Use http://api.vmonster.io/v1 by default.
+VITE_SERVER_URL=SERVER_URL  // Use https://api.vmonster.io/v1 by default.
 ```
 
 #### 4. Start the application
