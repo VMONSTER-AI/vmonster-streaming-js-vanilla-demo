@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^6.2.2"
+  },
+  "dependencies": {
+    "openai": "^4.93.0",
+    "vmonster-streaming-js": "^2.0.0"
   }
 }
