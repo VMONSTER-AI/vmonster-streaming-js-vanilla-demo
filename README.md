@@ -2,19 +2,20 @@
 
 This project is a basic Vanilla Javascript demo using the `vmonster-streaming-js` library.
 
-![initialize-demo](./public/screenshot-initialize-demo.png)
 ![demo](./public/screenshot-demo.png)
 
 ## Features
 
-This demo implements the following features using vmonsterRoom:
-[vmonsterRoom-KOR](https://docs.vmonster.io/undefined/real-time-streaming-sdk/vmonsterRoom)
-[vmonsterRoom-ENG](https://docs.vmonster.io/english/real-time-streaming-sdk/vmonsterRoom)
+This demo implements the following features using VmonsterRoom:
+[Official Document (Korean)](https://docs.vmonster.io/undefined/real-time-streaming-sdk/vmonsterRoom)
+[Official Document (English)](https://docs.vmonster.io/english/real-time-streaming-sdk/vmonsterRoom)
 
 - Join/Leave Vmonster Streaming stream
-- Request agent to speak text
+- Request AI Avatar to speak text
+- Chat with AI Avatar using OpenAI API (text, text stream)
 - Stop agent speaking
 - Add/Remove agent video
+- STT (Speech-to-Text)
 - Set background / position / scale
 
 ## Getting Started
