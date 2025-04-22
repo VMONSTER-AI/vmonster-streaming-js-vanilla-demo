@@ -32,7 +32,8 @@
         margin: 0.5rem 0.5rem 0.5rem 0;
       }
 
-      input {
+      input[type="text"],
+      input[type="number"] {
         width: 300px;
         padding: 0.25rem;
         border: 2px solid #e5e7eb;
@@ -41,7 +42,8 @@
         font-size: 1rem;
       }
 
-      input:focus {
+      input[type="text"]:focus,
+      input[type="number"]:focus {
         outline: none;
         border-color: var(--primary-color);
       }
@@ -49,7 +51,7 @@
       hr {
         border: none;
         border-top: 1px solid #e5e7eb;
-        margin: 1.5rem 0;
+        /* margin: 1.5rem 0; */
       }
 
       .status {
@@ -65,7 +67,7 @@
         font-weight: 500;
       }
 
-      #logAgentStateBtn,
+      #logAiAvatarStateBtn,
       #logRoomStateBtn {
         background-color: #959595;
       }
@@ -83,66 +85,81 @@
         margin: 0.5rem 0;
         color: #4b5563;
       }
+      #settings-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
     </style>
   </head>
   <body>
-    <div id="agent-video-parent"></div>
-    <!-- <video id="agent-video"></video> -->
-    <audio id="agent-audio"></audio>
+    <div id="aiavatar-video-parent"></div>
+    <audio id="aiavatar-audio"></audio>
     <hr />
-    <!-- Settings section with appropriate labels -->
-    <div id="settings">
-      <div id="languageDiv">
-        <label for="languageInput">Language </label>
-        <select id="languageInput">
-          <option value="ko">ko</option>
-          <option value="en">en</option>
-          <option value="ja">ja</option>
-          <option value="zh">zh</option>
-        </select>
-      </div>
-      <div>
-        <label for="backgroundInput">Background Image (png/jpg/jpeg)</label>
-        <input type="file" id="backgroundInput" accept=".png, .jpg, .jpeg" />
-      </div>
-      <div>
-        <label for="positionXInput">Position X</label>
-        <input type="number" id="positionXInput" placeholder="Position X" />
-      </div>
-      <div>
-        <label for="positionYInput">Position Y</label>
-        <input type="number" id="positionYInput" placeholder="Position Y" />
-      </div>
-      <div>
-        <label for="scaleInput">Scale</label>
-        <input type="number" id="scaleInput" placeholder="Scale" />
-      </div>
-    </div>
     <button id="joinBtn">Join</button>
     <button id="leaveBtn">Leave</button>
-    <br />
-    <input type="text" id="textInput" />
+    <div id="languageDiv" style="display: inline-block">
+      <label for="languageInput">Language </label>
+      <select id="languageInput">
+        <option value="ko">ko</option>
+        <option value="en">en</option>
+        <option value="ja">ja</option>
+        <option value="zh">zh</option>
+      </select>
+    </div>
+    <hr />
+    <!-- Settings toggle checkbox -->
+    <div id="settings-container">
+      <label for="withSettings" class="settings-toggle">
+        <input type="checkbox" id="withSettings" /> withSettings (background,
+        position, scale)
+      </label>
+      <!-- Settings section with appropriate labels -->
+      <div id="settings">
+        <div>
+          <label for="backgroundInput">Background Image (png/jpg/jpeg)</label>
+          <input type="file" id="backgroundInput" accept=".png, .jpg, .jpeg" />
+        </div>
+        <div>
+          <label for="positionXInput">Position X</label>
+          <input type="number" id="positionXInput" placeholder="Position X" />
+        </div>
+        <div>
+          <label for="positionYInput">Position Y</label>
+          <input type="number" id="positionYInput" placeholder="Position Y" />
+        </div>
+        <div>
+          <label for="scaleInput">Scale</label>
+          <input type="number" id="scaleInput" placeholder="Scale" />
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <input type="text" id="speakInput" placeholder="Speak with Text" />
     <button id="speakBtn">Speak</button>
     <button id="stopSpeakingBtn">Stop Speaking</button>
     <br />
-    <button id="addVideoBtn">Add Video</button>
-    <button id="removeVideoBtn">Remove Video</button>
+    <input type="text" id="chatInput" placeholder="Chat with OpenAI" />
+
+    <button id="streamChatBtn">Chat</button>
+    <label for="streamCheck" class="stream-check">
+      <input type="checkbox" id="streamCheck" checked /> Stream
+    </label>
     <br />
-    <button id="startRecordBtn">Start Recording</button>
-    <button id="stopRecordBtn">Stop Recording</button>
+    <button id="startRecordBtn">Start Audio Transcription</button>
+    <button id="stopRecordBtn">Stop Audio Transcription</button>
     <div id="sttResult" style="display: none">
       <b>STT Result: </b>
       <span id="sttText"></span>
     </div>
-    <hr />
-
-    <button id="logAgentStateBtn">log agentState</button>
-    <button id="logRoomStateBtn">log roomState</button>
-    <div class="status">
-      <div id="joinStatus">Not Joined..</div>
-      <div id="speakingStatus">Agent is not Speaking..</div>
-    </div>
     <br />
+    <hr />
+    <button id="addVideoBtn">Add Video</button>
+    <button id="removeVideoBtn" style="margin-right: 20px">Remove Video</button>
+    <br />
+    <button id="logAiAvatarStateBtn">log AiAvatarState</button>
+    <button id="logRoomStateBtn">log RoomState</button>
 
     <script type="module" src="main.js"></script>
   </body>
